@@ -1,0 +1,26 @@
+{
+  "name": "cle-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsc && node ./dist/first-phase/main.js",
+    "start-pm2": "npx tsc && pm2 start ecosystem.config.cjs && pm2 monit",
+    "first-phase": "npx tsc && npm run start-pm2",
+    "second-phase": "npx tsc && npm run start-pm2",
+    "third-phase": "npx tsc && npm run start-pm2"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@achrinza/node-ipc": "^10.1.1",
+    "@types/node-ipc": "^9.2.3",
+    "cheerio": "^1.0.0",
+    "loading-cli": "^1.1.2",
+    "puppeteer": "^24.8.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "typescript": "^5.8.3"
+  }
+}
