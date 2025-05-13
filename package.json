@@ -6,9 +6,9 @@
   "scripts": {
     "start": "npx tsc && node ./dist/first-phase/main.js",
     "start-pm2": "npx tsc && pm2 start ecosystem.config.cjs && pm2 monit",
-    "first-phase": "npx tsc && npm run start-pm2",
-    "second-phase": "npx tsc && npm run start-pm2",
-    "third-phase": "npx tsc && npm run start-pm2"
+    "first-phase": "npx tsc && pm2 start first-phase.config.cjs && pm2 monit",
+    "second-phase": "npx tsc && pm2 start second-phase.config.cjs && pm2 monit",
+    "third-phase": "npx tsc && pm2 start third-phase.config.cjs && pm2 monit"
   },
   "author": "",
   "license": "ISC",
