@@ -19,7 +19,8 @@ await db.exec(`
         valor_iptu REAL DEFAULT 0,
         endereco TEXT,
         lat REAL,
-        lng REAL
+        lng REAL,
+        scrap INTEGER DEFAULT 0
     );
 `);
 

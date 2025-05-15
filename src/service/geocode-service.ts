@@ -9,26 +9,19 @@ export default class GeocodeService {
 
   constructor() {}
 
-  public async geocode(address: string): Promise<any> {
-    // if(!this.db) this.db = await startDatabase();
+  public async geocode(address: string): Promise<[number, number]> {
+    if(!this.db) this.db = await startDatabase();
 
-    // if(/^.*(?=,)/g.test(address)) {
-    //     console.log(getLocalTime(), `Address ${address} is malformed`);
-    //     return;
-    // }
+    const result = await this.db.get("SELECT * FROM local WHERE endereco = ?", [address]);
 
-    // const name = /^.*(?=,)/g.exec(address)![0];
-
-    // const result = await this.db.get("SELECT * FROM local WHERE nome = ?", [name]);
-
-    // if(result) {
-    //     console.log(getLocalTime(), `Address ${address} is already in database`);
-    //     return result;
-    // }
+    if(result) {
+      console.log(getLocalTime(), `Address ${address} is already in database`);
+      return [result.lat, result.lng];
+    }
 
     const params = new URLSearchParams({ q: address, format: 'json', limit: '1' });
 
-    if(this.lastRequisitionTimestampNominatim === -1 || (this.lastRequisitionTimestampNominatim - Date.now()) < 3000) await sleep(2000);
+    // if(this.lastRequisitionTimestampNominatim === -1 || (this.lastRequisitionTimestampNominatim - Date.now()) < 3000) await sleep(2000);
 
     this.lastRequisitionTimestampNominatim = Date.now();
 
@@ -36,8 +29,15 @@ export default class GeocodeService {
 
     const data = await response.json();
 
-    // await this.db.run("INSERT INTO local (nome, info) VALUES (?, ?)", [data[0].name, data[0]]);
+    if(data.length === 0) {
+      console.log(getLocalTime(), `Can't geocode address ${address}`);
+      return [-1, -1];
+    }
 
-    return data[0];
+    console.log(getLocalTime(), `Geocoded ${address}: (${data[0].lat}, ${data[0].lon})`);
+
+    await this.db.run("INSERT INTO local (endereco, lat, lng) VALUES (?, ?, ?)", [address, data[0].lat, data[0].lon]);
+
+    return [data[0].lat, data[0].lon];
   }
 }

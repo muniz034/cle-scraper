@@ -8,7 +8,8 @@
     "start-pm2": "npx tsc && pm2 start ecosystem.config.cjs && pm2 monit",
     "first-phase": "npx tsc && pm2 start first-phase.config.cjs && pm2 monit",
     "second-phase": "npx tsc && pm2 start second-phase.config.cjs && pm2 monit",
-    "third-phase": "npx tsc && pm2 start third-phase.config.cjs && pm2 monit"
+    "second-phase:parallel": "npx tsc && pm2 start second-phase.config.cjs",
+    "third-phase": "npx tsc && node ./dist/third-phase/main.js"
   },
   "author": "",
   "license": "ISC",

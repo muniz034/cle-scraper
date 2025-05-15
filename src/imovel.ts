@@ -9,6 +9,7 @@ export default class Imovel {
   endereco?: string;
   lat?: number;
   lng?: number;
+  scrap!: number;
 
   constructor(data: Partial<Imovel>) {
     Object.assign(this, {
@@ -32,6 +33,7 @@ export default class Imovel {
       endereco: row.endereco,
       lat: row.lat,
       lng: row.lng,
+      scrap: row.scrap
     });
   }
 
