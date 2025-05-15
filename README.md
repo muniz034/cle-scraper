@@ -1,7 +1,8 @@
 # cle-scraper
 A Node.js-based web scraper for real estate properties
 
-- [ ] Use postgresql as SGDB instead of sqlite;
+- [ ] Use postgresql as SGDB instead of sqlite (v1.1.0);
+- [ ] Use liquibase (v1.1.0);
 - [ ] Log telemetry;
 - [ ] Use telemetry to calculate remaining time;
 - [ ] Use cron to run the script automatically;
