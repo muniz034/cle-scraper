@@ -8,4 +8,5 @@ A Node.js-based web scraper for real estate properties
 - [ ] Run the scripts concurrently;
 - [ ] Develop an API to change the scraper filters;
 - [ ] Use .env to store information;
-- [ ] Use lowdb to store execution information.
+- [ ] Use lowdb to store execution information;
+- [ ] Run the Typescript files natively.

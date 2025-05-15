@@ -21,8 +21,6 @@ export default class GeocodeService {
 
     const params = new URLSearchParams({ q: address, format: 'json', limit: '1' });
 
-    // if(this.lastRequisitionTimestampNominatim === -1 || (this.lastRequisitionTimestampNominatim - Date.now()) < 3000) await sleep(2000);
-
     this.lastRequisitionTimestampNominatim = Date.now();
 
     const response = await fetch(`https://nominatim.openstreetmap.org/search?${params.toString()}`, { headers: { 'User-Agent': 'clé' } });
